@@ -5,13 +5,14 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using JetBrains.Annotations;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("REFERENCES")] 
     
     [SerializeField] private Image fadePanel;
-    private Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
     
     [Space(10)]
     
@@ -31,9 +32,15 @@ public class PlayerController : MonoBehaviour
     private bool dead;
     private float gravity = -20;
 
+    private Pushable pushableObject;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
     }
 
     void Update()
@@ -57,8 +64,9 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed),rb.velocity.y);
-        
-        
+
+        PushPull();
+
     }
 
     private void FixedUpdate()
@@ -130,13 +138,44 @@ public class PlayerController : MonoBehaviour
             dead = false;
         }
     }
+    
+    private void PushPull()
+    {
+        if (pushableObject == null) return;
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            pushableObject.fixedJoint.connectedBody = rb;
+        }
+        else
+        {
+            pushableObject.fixedJoint.connectedBody = null;
+        }
+    }
     
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Threat")) return;
+        if (other.CompareTag("Threat"))
+        {
+            Die();
+        }
+
+        if (other.CompareTag("Pushable"))
+        {
+            pushableObject = other.GetComponent<Pushable>();
+        }
         
-        Die();
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Pushable"))
+        {
+            pushableObject = null;
+        }    
+    }
+
+    
+    
 }
