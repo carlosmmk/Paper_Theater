@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
-        fadePanel.DOFade(1, fadeDuration).OnComplete(()=>Application.Quit());
+        fadePanel.DOFade(1, fadeDuration).OnComplete(()=>Application.Quit()).SetUpdate(true);
     }
 
     public void OpenCurtains()

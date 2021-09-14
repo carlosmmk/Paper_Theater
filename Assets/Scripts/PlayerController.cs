@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [Header("REFERENCES")] 
     
     [SerializeField] private Image fadePanel;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
     [HideInInspector]public Rigidbody rb;
     
     [Space(10)]
@@ -20,16 +22,17 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10;
     public float regularGravity = -20;
     public float fallingGravity = -20;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
     public float maxSpeed;
+    private float originalSpeed;
     [Range(0,1)]
     public float airControl;
     public float deceleration;
 
     private Vector3 direction;
+    private bool pushing;
     private bool jumped;
     private bool dead;
+    private bool blockedInput;
     private float gravity = -20;
 
     private Pushable pushableObject;
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        originalSpeed = maxSpeed;
     }
 
     private void Start()
@@ -45,13 +49,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (dead) return;
+        if (dead || blockedInput) return;
         
         float hInput = Input.GetAxisRaw("Horizontal");
 
         direction.x = hInput * speed;
         direction.y = gravity;
-
+        
+        FlipSprite();
+        
         gravity = rb.velocity.y < 0 ? fallingGravity : regularGravity;
         
         if (Input.GetButtonDown("Jump"))
@@ -82,6 +88,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FlipSprite()
+    {
+        if (direction.x == 0 || pushing) return;
+        
+        transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
+    }
+
     public bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, -0.15f, groundLayer); 
@@ -103,7 +116,6 @@ public class PlayerController : MonoBehaviour
     {
         float movementModifier = IsGrounded() ? 1 : airControl;
         rb.AddForce(Vector3.right*direction.x*movementModifier);
-        
     }
 
     private void Gravity()
@@ -143,16 +155,42 @@ public class PlayerController : MonoBehaviour
     {
         if (pushableObject == null) return;
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (!pushableObject.grounded && pushableObject.GetComponent<FixedJoint>() != null)
         {
-            pushableObject.fixedJoint.connectedBody = rb;
+            Release();
+            return;
         }
-        else
+        
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            pushableObject.fixedJoint.connectedBody = null;
+            pushing = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            maxSpeed = maxSpeed / pushableObject.rb.mass;
+            pushableObject.rb.isKinematic = false;
+            var joint = pushableObject.gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = rb;
+        }
+        
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            Release();
+        }
+
+        void Release()
+        {
+            pushing = false;
+            StartCoroutine(BlockInput(0.15f));
+            
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            maxSpeed = originalSpeed;
+            Destroy(pushableObject.GetComponent<FixedJoint>());
+
+            if (pushableObject.grounded)
+            {
+                pushableObject.rb.isKinematic = true;
+            }
         }
     }
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -163,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Pushable"))
         {
-            pushableObject = other.GetComponent<Pushable>();
+            pushableObject = other.GetComponentInParent<Pushable>();
         }
         
     }
@@ -176,6 +214,12 @@ public class PlayerController : MonoBehaviour
         }    
     }
 
-    
+    public IEnumerator BlockInput(float duration)
+    {
+        blockedInput = true;
+        direction = Vector3.zero;
+        yield return new WaitForSeconds(duration);
+        blockedInput = false;
+    }
     
 }
