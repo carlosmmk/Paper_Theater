@@ -11,6 +11,7 @@ public class Pushable : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
     public float groundedRayDist;
+    public float distToGrab;
     [HideInInspector] public bool jointBroken;
 
     private void Awake()
@@ -30,11 +31,13 @@ public class Pushable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, -transform.up, groundedRayDist, groundLayer);
+        grounded = Physics.Raycast(transform.position, -Vector3.up, groundedRayDist, groundLayer);
     }
 
     public void OnCollisionEnter(Collision other)
     {
+        if (other.relativeVelocity.y == 0) return;
+        
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Ground")))
         {
             StartCoroutine(DisablePhysics());
@@ -43,6 +46,7 @@ public class Pushable : MonoBehaviour
 
     public IEnumerator DisablePhysics()
     {
+        rb.mass = 1000;
         while (rb.velocity.magnitude != 0 || rb.angularVelocity.magnitude != 0)
         {
             yield return null;
@@ -50,11 +54,18 @@ public class Pushable : MonoBehaviour
 
         rb.isKinematic = true;
         collider.material = originalPM;
+        rb.mass = 2;
+    }
+
+    public void ActivatePhysics()
+    {
+        rb.mass = 2;
+        rb.isKinematic = false;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, -transform.up * groundedRayDist);
+        Gizmos.DrawRay(transform.position, -Vector3.up * groundedRayDist);
     }
 }

@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fadePanel.color = Color.black;
+        fadePanel.DOFade(0, fadeDuration).SetUpdate(true);
         Time.timeScale = 0;
     }
 

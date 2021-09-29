@@ -27,7 +27,7 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("grounded", playerController.IsGrounded());
         anim.SetBool("pushing", playerController.pushing);
         
-        anim.SetFloat("pushSpeed", Mathf.Abs(playerController.rb.velocity.x / playerController.maxSpeed));
+        anim.SetFloat("pushSpeed", (playerController.rb.velocity.x * playerController.directionFacing) / playerController.maxSpeed);
     }
 
     public void SetTrigger(string trigger)
@@ -45,5 +45,10 @@ public class PlayerAnimation : MonoBehaviour
                 anim.ResetTrigger(param.name);
             }
         }
+    }
+
+    public bool IsPlayerLanding()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Landing");
     }
 }

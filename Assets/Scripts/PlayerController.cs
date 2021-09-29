@@ -1,40 +1,47 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using JetBrains.Annotations;
+using UnityEngine.Rendering.HighDefinition;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("REFERENCES")] 
-    
-    [SerializeField] private Image fadePanel;
+    [Header("REFERENCES")] [SerializeField]
+    private Image fadePanel;
+
+    public GameObject depthMask;
     public Transform groundCheck;
     public Transform feetPosition;
     public LayerMask groundLayer;
-    [HideInInspector]public Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     private PlayerAnimation anim;
-    private CapsuleCollider playerCollider;
+    [HideInInspector] public CapsuleCollider playerCollider;
     public float groundedRadius;
-    
-    [Space(10)]
-    
-    public float speed = 5;
+    private bool groundedCooldown;
+
+    [Space(10)] public float speed = 5;
     public float jumpForce = 10;
     public float regularGravity = -20;
     public float fallingGravity = -20;
     public float maxSpeed;
     private float originalSpeed;
-    [Range(0,1)]
-    public float airControl;
+    [Range(0, 1)] public float airControl;
     public float deceleration;
+    public float pushRange;
+    public float climbRange;
+    public float climbRadius;
+    public float heightToDie;
 
-    private Vector3 direction;
+    [HideInInspector] public Vector3 direction;
     [HideInInspector] public bool pushing;
+    [HideInInspector] public int directionFacing = 1;
     private bool jumped;
+    private bool stopped;
     private bool dead;
     private bool blockedInput;
     private float gravity = -20;
@@ -55,19 +62,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        AdjustCollider();
-        
         if (dead || blockedInput) return;
-        
+
         float hInput = Input.GetAxisRaw("Horizontal");
 
         direction.x = hInput * speed;
         direction.y = gravity;
-        
+
+        directionFacing = (int)transform.localScale.x;
+
         FlipSprite();
 
+        AdjustCollider();
+
         gravity = rb.velocity.y < 0 ? fallingGravity : regularGravity;
-        
+
         if (Input.GetButtonDown("Jump"))
         {
             CallJump();
@@ -77,10 +86,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed),rb.velocity.y);
+
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
 
         PushPull();
-
+        //Climbing();
     }
 
     private void FixedUpdate()
@@ -89,7 +99,7 @@ public class PlayerController : MonoBehaviour
         Gravity();
 
         Deceleration();
-        
+
         if (jumped)
         {
             Jump();
@@ -98,45 +108,58 @@ public class PlayerController : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (direction.x == 0 || pushing) return;
-        
-        transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
+        if (direction.x == 0 || pushing || blockedInput) return;
+
+        transform.localScale = new Vector3(
+            direction.x > 0 ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x),
+            transform.localScale.y, transform.localScale.z);
     }
 
     public bool IsGrounded()
     {
-        return Physics.CheckSphere(groundCheck.position, groundedRadius, groundLayer); 
+        if (groundedCooldown || !playerCollider.enabled) return false;
+
+        return Physics.CheckSphere(groundCheck.position, groundedRadius, groundLayer);
     }
 
     private void Jump()
     {
         anim.SetTrigger("Jump");
-        rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         jumped = false;
     }
 
     private void CallJump()
     {
-        if(!IsGrounded()) return;
+        if (!IsGrounded() || pushing) return;
         jumped = true;
+        StartCoroutine(StartGroundedCooldown());
     }
 
     private void Movement()
     {
         float movementModifier = IsGrounded() ? 1 : airControl;
-        rb.AddForce(Vector3.right*direction.x*movementModifier);
+        rb.AddForce(Vector3.right * direction.x * movementModifier);
     }
 
     private void Gravity()
     {
-        rb.AddForce(Vector3.up*gravity, ForceMode.Acceleration);
+        rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
     }
 
     private void Deceleration()
     {
-        if (direction.x == 0)
+        if (direction.x == 0) //if there's no input
         {
-            rb.AddForce(-Vector3.right*rb.velocity.x*deceleration);
+            if (IsGrounded())
+            {
+                rb.AddForce(-rb.velocity * deceleration);
+                rb.AddForce(Vector2.up * -gravity, ForceMode.Acceleration);
+            }
+            else
+            {
+                rb.AddForce(-Vector3.right * rb.velocity.x * deceleration);
+            }
         }
     }
 
@@ -144,7 +167,7 @@ public class PlayerController : MonoBehaviour
     {
         dead = true;
         Sequence deathSequence = DOTween.Sequence();
-        
+
         deathSequence.Append(fadePanel.DOFade(1, 2).OnComplete(() => StartCoroutine(Reborn())));
         deathSequence.AppendInterval(0.5f);
         deathSequence.Append(fadePanel.DOFade(0, 2));
@@ -153,35 +176,61 @@ public class PlayerController : MonoBehaviour
         IEnumerator Reborn()
         {
             var lastCheckpoint = CheckpointManager.instance.activeCheckpoint;
-            
+
             direction = Vector3.zero;
-            transform.position = new Vector3(lastCheckpoint.transform.position.x, lastCheckpoint.transform.position.y, 0);
+            transform.position =
+                new Vector3(lastCheckpoint.transform.position.x, lastCheckpoint.transform.position.y, 0);
             //resetar o player
             yield return new WaitForSeconds(0.5f);
             dead = false;
         }
     }
-    
+
+    private void Climbing()
+    {
+        var possibleCorners = Physics.OverlapSphere(
+            new Vector2(transform.position.x + (float)directionFacing / 3, transform.position.y + climbRange),
+            climbRadius, groundLayer);
+
+        foreach (var corner in possibleCorners)
+        {
+            Debug.Log(corner.bounds.max);
+        }
+    }
+
     private void PushPull()
     {
         if (pushableObject == null) return;
 
-        if (!pushableObject.grounded && pushableObject.GetComponent<FixedJoint>() != null)
+        if (!IsPushableAhead() && pushing)
+        {
+            Release();
+        }
+
+        if (!pushableObject.grounded && pushableObject.GetComponent<FixedJoint>() != null) //if the object falls
         {
             Release();
             return;
         }
-        
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+
+        if (!IsGrounded() && pushing) // if the player falls
         {
-            pushing = true;
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            maxSpeed = maxSpeed / pushableObject.rb.mass;
-            pushableObject.rb.isKinematic = false;
-            var joint = pushableObject.gameObject.AddComponent<FixedJoint>();
-            joint.connectedBody = rb;
+            Release();
+            return;
         }
-        
+
+        if (Input.GetKey(KeyCode.LeftControl) && IsGrounded())
+        {
+            if (pushing || anim.IsPlayerLanding() || !IsPushableAhead()) return;
+
+            StartCoroutine(GrabObject());
+            // rb.velocity = new Vector2(0, rb.velocity.y);
+            // maxSpeed = maxSpeed / pushableObject.rb.mass;
+            // pushableObject.rb.isKinematic = false;
+            // var joint = pushableObject.gameObject.AddComponent<FixedJoint>();
+            // joint.connectedBody = rb;
+        }
+
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             Release();
@@ -190,8 +239,8 @@ public class PlayerController : MonoBehaviour
         void Release()
         {
             pushing = false;
-            StartCoroutine(BlockInput(0.15f));
-            
+            StartCoroutine(BlockInputTimer(0.15f));
+
             rb.velocity = new Vector2(0, rb.velocity.y);
             maxSpeed = originalSpeed;
             Destroy(pushableObject.GetComponent<FixedJoint>());
@@ -201,12 +250,67 @@ public class PlayerController : MonoBehaviour
                 pushableObject.rb.isKinematic = true;
             }
         }
+
+        bool IsPushableAhead()
+        {
+            var possiblePushables = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y - 0.5f),
+                (Vector3.right * directionFacing), pushRange, groundLayer);
+
+            return possiblePushables.Any(pushable => pushable.transform.GetComponent<Pushable>() != null);
+        }
+
+        IEnumerator GrabObject()
+        {
+            BlockInput(true);
+            const float minDist = 0.025f;
+            const float grabSpeed = 5f;
+            float adjustmentTimer = 0.5f;
+
+            while (true)
+            {
+                var distToPushable = Vector2.Distance(transform.position, pushableObject.transform.position);
+
+                adjustmentTimer -= Time.deltaTime;
+
+                if (distToPushable > pushableObject.distToGrab) //if player is too far
+                {
+                    rb.AddForce(Vector3.right * directionFacing * grabSpeed);
+                }
+                else if (distToPushable < pushableObject.distToGrab) //if player is too close
+                {
+                    rb.AddForce(Vector3.right * -directionFacing * grabSpeed);
+                }
+
+                if (distToPushable > pushableObject.distToGrab &&
+                    distToPushable < pushableObject.distToGrab + minDist || adjustmentTimer < 0)
+                {
+                    BlockInput(false);
+                    break;
+                }
+
+                yield return null;
+            }
+
+            pushing = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            maxSpeed = maxSpeed / pushableObject.rb.mass;
+            pushableObject.ActivatePhysics();
+            var joint = pushableObject.gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = rb;
+        }
     }
 
     private void AdjustCollider()
     {
-        playerCollider.height = 2 - feetPosition.localPosition.y / 6;
-        playerCollider.center = new Vector2(0,feetPosition.localPosition.y / 15);
+        if (IsGrounded())
+        {
+            playerCollider.height = 2;
+            playerCollider.center = Vector3.zero;
+            return;
+        }
+
+        playerCollider.height = 2.2f - feetPosition.localPosition.y / 6;
+        playerCollider.center = new Vector2(0, feetPosition.localPosition.y / 15);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -220,7 +324,7 @@ public class PlayerController : MonoBehaviour
         {
             pushableObject = other.GetComponentInParent<Pushable>();
         }
-        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -228,20 +332,41 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Pushable"))
         {
             pushableObject = null;
-        }    
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (!other.gameObject.layer.Equals(LayerMask.NameToLayer("Ground"))) return;
 
-        if (other.relativeVelocity.y != 0 && IsGrounded())
+        var fallHeight = other.relativeVelocity.y;
+
+        Debug.Log(fallHeight);
+
+        if (fallHeight == 0) return;
+        
+        if (IsGrounded() || groundedCooldown)
         {
-            anim.SetTrigger("Land");
+            if (fallHeight < heightToDie)
+            {
+                anim.SetTrigger("Land");
+                Debug.Log("LANDED");
+            }
+            else
+            {
+                anim.SetTrigger("Death_Fall");
+                Die();
+            }
         }
+}
+
+private void BlockInput(bool blocked)
+    {
+        blockedInput = blocked;
+        direction = blocked ? Vector3.zero : direction;
     }
 
-    public IEnumerator BlockInput(float duration)
+    public IEnumerator BlockInputTimer(float duration)
     {
         blockedInput = true;
         direction = Vector3.zero;
@@ -249,9 +374,18 @@ public class PlayerController : MonoBehaviour
         blockedInput = false;
     }
 
+    public IEnumerator StartGroundedCooldown()
+    {
+        groundedCooldown = true;
+        yield return new WaitForSeconds(0.1f);
+        groundedCooldown = false;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundedRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, groundedRadius); //grounded sphere
+        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f), (Vector3.right * directionFacing) * pushRange); //push ray
+        Gizmos.DrawWireSphere(new Vector2(transform.position.x + (float)directionFacing / 3, transform.position.y + climbRange), climbRadius); //climb sphere
     }
 }
