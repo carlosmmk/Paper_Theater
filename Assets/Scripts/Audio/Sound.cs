@@ -17,6 +17,7 @@ public class Sound
 
     public bool loop;
     public AudioMixerGroup mixerGroup;
+    public bool playOnAwake;
     public bool ignoreListenerPause;
 
     [HideInInspector]

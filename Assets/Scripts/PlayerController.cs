@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using JetBrains.Annotations;
 using UnityEngine.Rendering.HighDefinition;
+using Debug = UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform feetPosition;
     public LayerMask groundLayer;
     [HideInInspector] public Rigidbody rb;
+    private RagdollController ragdollController;
     private PlayerAnimation anim;
     [HideInInspector] public CapsuleCollider playerCollider;
     public float groundedRadius;
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int directionFacing = 1;
     private bool jumped;
     private bool stopped;
-    private bool dead;
+    [HideInInspector] public bool dead;
     private bool blockedInput;
     private float gravity = -20;
 
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
         anim = GetComponentInChildren<PlayerAnimation>();
+        ragdollController = GetComponent<RagdollController>();
         originalSpeed = maxSpeed;
     }
 
@@ -163,11 +167,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
         dead = true;
+        rb.velocity = Vector3.zero;
+        direction = Vector3.zero;
+        
         Sequence deathSequence = DOTween.Sequence();
-
+        deathSequence.AppendInterval(1f);
         deathSequence.Append(fadePanel.DOFade(1, 2).OnComplete(() => StartCoroutine(Reborn())));
         deathSequence.AppendInterval(0.5f);
         deathSequence.Append(fadePanel.DOFade(0, 2));
@@ -176,6 +183,19 @@ public class PlayerController : MonoBehaviour
         IEnumerator Reborn()
         {
             var lastCheckpoint = CheckpointManager.instance.activeCheckpoint;
+            var lastChild = transform.GetChild(transform.childCount - 1);
+            
+            if (lastChild.name.Contains("Ragdoll"))
+            {
+                Destroy(lastChild.gameObject); //disable ragdoll
+            }
+            
+            var followerSpotLights = FindObjectsOfType<FollowerSpotLight>();
+            
+            foreach (var spotlight in followerSpotLights)
+                spotlight.SetTarget(transform); //reassign player as target
+            
+            anim.gameObject.SetActive(true); //enable regular sprite
 
             direction = Vector3.zero;
             transform.position =
@@ -341,8 +361,6 @@ public class PlayerController : MonoBehaviour
 
         var fallHeight = other.relativeVelocity.y;
 
-        Debug.Log(fallHeight);
-
         if (fallHeight == 0) return;
         
         if (IsGrounded() || groundedCooldown)
@@ -350,11 +368,12 @@ public class PlayerController : MonoBehaviour
             if (fallHeight < heightToDie)
             {
                 anim.SetTrigger("Land");
-                Debug.Log("LANDED");
+                //Debug.Log("LANDED");
             }
             else
             {
-                anim.SetTrigger("Death_Fall");
+                //anim.SetTrigger("Death_Fall");
+                ragdollController.ActivateRagdoll();
                 Die();
             }
         }

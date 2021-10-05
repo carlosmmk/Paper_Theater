@@ -32,4 +32,9 @@ public class FollowerSpotLight : MonoBehaviour
         
         light.enabled = Vector3.Angle(transform.position, target.position) > maxAngle ? false : true;
     }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
 }

@@ -59,7 +59,7 @@ public class Pushable : MonoBehaviour
 
     public void ActivatePhysics()
     {
-        rb.mass = 2;
+        rb.mass = 1.5f;
         rb.isKinematic = false;
     }
 
