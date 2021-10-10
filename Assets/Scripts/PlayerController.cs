@@ -23,12 +23,17 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     private RagdollController ragdollController;
     private PlayerAnimation anim;
-    [HideInInspector] public CapsuleCollider playerCollider;
+    [HideInInspector] public BoxCollider playerCollider;
     public float groundedRadius;
     private bool groundedCooldown;
 
     [Space(10)] public float speed = 5;
     public float jumpForce = 10;
+    
+    public float coyotteTime;
+    private bool coyotteSaved;
+    
+    private bool canJump;
     public float regularGravity = -20;
     public float fallingGravity = -20;
     public float maxSpeed;
@@ -51,10 +56,12 @@ public class PlayerController : MonoBehaviour
 
     private Pushable pushableObject;
 
+    private bool landed;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        playerCollider = GetComponent<CapsuleCollider>();
+        playerCollider = GetComponent<BoxCollider>();
         anim = GetComponentInChildren<PlayerAnimation>();
         ragdollController = GetComponent<RagdollController>();
         originalSpeed = maxSpeed;
@@ -76,25 +83,33 @@ public class PlayerController : MonoBehaviour
         directionFacing = (int)transform.localScale.x;
 
         FlipSprite();
-
-        AdjustCollider();
-
-        gravity = rb.velocity.y < 0 ? fallingGravity : regularGravity;
+        //AdjustCollider();
 
         if (Input.GetButtonDown("Jump"))
         {
-            CallJump();
+            Jump();
         }
+
+        Landing();
 
         if (Mathf.Abs(rb.velocity.x) < 0.1f && direction.x == 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
-
+        
         PushPull();
-        //Climbing();
+        
+    }
+
+    private void Landing()
+    {
+        if (IsGrounded() && !landed)
+        {
+            anim.PlayAnimation("Landing");
+            landed = true;
+        }
+
+        if (!IsGrounded()) landed = false;
     }
 
     private void FixedUpdate()
@@ -103,11 +118,6 @@ public class PlayerController : MonoBehaviour
         Gravity();
 
         Deceleration();
-
-        if (jumped)
-        {
-            Jump();
-        }
     }
 
     private void FlipSprite()
@@ -123,32 +133,48 @@ public class PlayerController : MonoBehaviour
     {
         if (groundedCooldown || !playerCollider.enabled) return false;
 
-        return Physics.CheckSphere(groundCheck.position, groundedRadius, groundLayer);
+        var sphereCheck = Physics.CheckSphere(groundCheck.position, groundedRadius, groundLayer);
+
+        if (!sphereCheck && !jumped)
+        {
+            if (!canJump)
+            {
+                if (coyotteSaved) return false;
+                StartCoroutine(CoyotteTime()); 
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        return sphereCheck;
     }
 
     private void Jump()
     {
-        anim.SetTrigger("Jump");
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        jumped = false;
-    }
-
-    private void CallJump()
-    {
         if (!IsGrounded() || pushing) return;
-        jumped = true;
+        
+        anim.PlayAnimation("TakeOff");
+        rb.velocity = new Vector3(rb.velocity.x,jumpForce);
         StartCoroutine(StartGroundedCooldown());
+        jumped = true;
     }
 
     private void Movement()
     {
         float movementModifier = IsGrounded() ? 1 : airControl;
-        rb.AddForce(Vector3.right * direction.x * movementModifier);
+        rb.velocity += new Vector3(direction.x * movementModifier, rb.velocity.y) * Time.deltaTime;
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
     }
 
     private void Gravity()
     {
-        rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
+        if (direction.x == 0 && IsGrounded() && !canJump) return;
+        
+        gravity = rb.velocity.y < 0 ? fallingGravity : regularGravity;
+
+        rb.velocity += Vector3.up * gravity * Time.deltaTime;
     }
 
     private void Deceleration()
@@ -157,12 +183,11 @@ public class PlayerController : MonoBehaviour
         {
             if (IsGrounded())
             {
-                rb.AddForce(-rb.velocity * deceleration);
-                rb.AddForce(Vector2.up * -gravity, ForceMode.Acceleration);
+                rb.velocity += -rb.velocity * deceleration * Time.deltaTime;
             }
             else
             {
-                rb.AddForce(-Vector3.right * rb.velocity.x * deceleration);
+                rb.velocity += new Vector3(-rb.velocity.x * deceleration * airControl * Time.deltaTime, 0);
             }
         }
     }
@@ -241,14 +266,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl) && IsGrounded())
         {
-            if (pushing || anim.IsPlayerLanding() || !IsPushableAhead()) return;
+            if (pushing || anim.IsPlayerLanding() || anim.IsPlayerInAir() || !IsPushableAhead()) return;
 
             StartCoroutine(GrabObject());
-            // rb.velocity = new Vector2(0, rb.velocity.y);
-            // maxSpeed = maxSpeed / pushableObject.rb.mass;
-            // pushableObject.rb.isKinematic = false;
-            // var joint = pushableObject.gameObject.AddComponent<FixedJoint>();
-            // joint.connectedBody = rb;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -282,6 +302,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator GrabObject()
         {
             BlockInput(true);
+            pushing = true;
             const float minDist = 0.025f;
             const float grabSpeed = 5f;
             float adjustmentTimer = 0.5f;
@@ -310,8 +331,7 @@ public class PlayerController : MonoBehaviour
 
                 yield return null;
             }
-
-            pushing = true;
+            
             rb.velocity = new Vector2(0, rb.velocity.y);
             maxSpeed = maxSpeed / pushableObject.rb.mass;
             pushableObject.ActivatePhysics();
@@ -324,12 +344,13 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            playerCollider.height = 2;
+            playerCollider.size = new Vector3(playerCollider.size.x, 2, playerCollider.size.z);
             playerCollider.center = Vector3.zero;
             return;
         }
 
-        playerCollider.height = 2.2f - feetPosition.localPosition.y / 6;
+        var newColliderHeight = 2.2f - feetPosition.localPosition.y / 6;
+        playerCollider.size = new Vector3(playerCollider.size.x, newColliderHeight, playerCollider.size.z);
         playerCollider.center = new Vector2(0, feetPosition.localPosition.y / 15);
     }
 
@@ -359,27 +380,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!other.gameObject.layer.Equals(LayerMask.NameToLayer("Ground"))) return;
 
-        var fallHeight = other.relativeVelocity.y;
-
-        if (fallHeight == 0) return;
-        
         if (IsGrounded() || groundedCooldown)
         {
-            if (fallHeight < heightToDie)
-            {
-                anim.SetTrigger("Land");
-                //Debug.Log("LANDED");
-            }
-            else
-            {
-                //anim.SetTrigger("Death_Fall");
-                ragdollController.ActivateRagdoll();
-                Die();
-            }
+            jumped = false;
+            coyotteSaved = false;
+
+            //if player dies
+            //ragdollController.ActivateRagdoll();
+            //Die();
         }
 }
 
-private void BlockInput(bool blocked)
+    private void BlockInput(bool blocked)
     {
         blockedInput = blocked;
         direction = blocked ? Vector3.zero : direction;
@@ -398,6 +410,16 @@ private void BlockInput(bool blocked)
         groundedCooldown = true;
         yield return new WaitForSeconds(0.1f);
         groundedCooldown = false;
+    }
+    
+    public IEnumerator CoyotteTime()
+    {
+        canJump = true;
+        
+        yield return new WaitForSeconds(coyotteTime);
+        
+        canJump = false;
+        coyotteSaved = true;
     }
 
     private void OnDrawGizmos()

@@ -52,6 +52,22 @@ public class PlayerAnimation : MonoBehaviour
         return anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Landing");
     }
 
+    public bool IsPlayerInAir()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("InAir");
+    }
+
+    public void PlayAnimation(string animName)
+    {
+        // if (anim.IsInTransition(0))
+        // {
+        //     Debug.Log("CANNOT PLAY ANIMATION");
+        //     return;
+        // }
+        
+        anim.CrossFade(animName, 0.1f);
+    }
+
     public void PlayFootstepSound()
     {
         AudioManager.instance.PlayRandomBetweenSounds(new []{"Footstep01", "Footstep02", "Footstep03", "Footstep04", "Footstep05", "Footstep06"
