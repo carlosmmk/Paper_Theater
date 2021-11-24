@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Linq;
 using System;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -18,8 +19,8 @@ public class AudioManager : MonoBehaviour
     public AudioMixer musicMixer;
     public AudioMixer sfxMixer;
     public Coroutine fadeCoroutine;
-    [HideInInspector] public string musicPlaying; 
-    
+    [HideInInspector] public string musicPlaying;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -59,12 +60,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -75,6 +70,20 @@ public class AudioManager : MonoBehaviour
         }
         
         s.source.Play();
+    }
+    
+    public void PlayWithFade(string name, float fadeDuration)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.volume = 0;
+        s.source.Play();
+        s.source.DOFade(s.volume, fadeDuration);
     }
 
     public void PlayClipAtGameObject(string name, GameObject gameObject, bool loop, float minDist, float maxDist)
@@ -122,47 +131,7 @@ public class AudioManager : MonoBehaviour
         musicPlaying = name;
         Play(name);
     }
-    
-    public void FadeInSound(string name, float duration)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found!");
-            return;
-        }
 
-        if (fadeCoroutine != null) //if it's not the first time
-        {
-            StopCoroutine(fadeCoroutine);  
-        }
-        else
-        {
-            s.source.volume = 0;
-        }
-
-        float targetVolume = s.volume;
-
-        s.source.Play();
-        fadeCoroutine = StartCoroutine(StartFade(s.source, duration, targetVolume));
-    }
-    
-    public void FadeOutSound(string name, float duration)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found!");
-            return;
-        }
-
-        StopCoroutine(fadeCoroutine);
-        float targetVolume = 0;
-
-        s.source.Play();
-        fadeCoroutine = StartCoroutine(StartFade(s.source, duration, targetVolume));
-    }
-    
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -173,12 +142,24 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+    
+    public void StopWithFade(string name, float fadeDuration)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.DOFade(0, fadeDuration).OnComplete(() => s.source.Stop());
+    }
 
     public void PlayRandomBetweenSounds(string[] names)
     {
         Play(names[Random.Range(0, names.Length)]);
     }
-    
+
     public void PlayOneShotRandomBetweenSounds(string[] names)
     {
         PlayOneShot(names[Random.Range(0, names.Length)]);

@@ -7,11 +7,13 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
     private PlayerController playerController;
+    private PushAndPull pushAndPull;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         playerController = GetComponentInParent<PlayerController>();
+        pushAndPull = GetComponentInParent<PushAndPull>();
     }
 
     // Start is called before the first frame update
@@ -23,9 +25,9 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("walking", Input.GetAxisRaw("Horizontal") != 0);
+        anim.SetBool("walking", Input.GetAxisRaw("Horizontal") != 0 && Mathf.Abs(playerController.rb.velocity.x) > 0.1f);
         anim.SetBool("grounded", playerController.IsGrounded());
-        anim.SetBool("pushing", playerController.pushing);
+        anim.SetBool("pushing", pushAndPull.pushing);
         
         anim.SetFloat("pushSpeed", (playerController.rb.velocity.x * playerController.directionFacing) / playerController.maxSpeed);
     }
@@ -49,22 +51,17 @@ public class PlayerAnimation : MonoBehaviour
 
     public bool IsPlayerLanding()
     {
-        return anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Landing");
+        // return anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Landing");
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("Landing");
     }
 
     public bool IsPlayerInAir()
     {
-        return anim.GetCurrentAnimatorStateInfo(0).IsName("InAir");
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("InAir");
     }
 
     public void PlayAnimation(string animName)
     {
-        // if (anim.IsInTransition(0))
-        // {
-        //     Debug.Log("CANNOT PLAY ANIMATION");
-        //     return;
-        // }
-        
         anim.CrossFade(animName, 0.1f);
     }
 

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 924352983536698233}
   - component: {fileID: 5431948011626807406}
   - component: {fileID: 7263406505987405243}
-  - component: {fileID: 4410609454316995815}
   m_Layer: 7
   m_Name: fita
   m_TagString: Untagged
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4410609454316995815
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774399550139739621}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7996905739500875117, guid: 6428ab7f4a0cf3944966767a1a830c90, type: 3}
 --- !u!1 &2045535506807433227
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,8 +126,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 208.50922
-  m_Range: 2.6
+  m_Intensity: 479.46063
+  m_Range: 3.5
   m_SpotAngle: 76.7
   m_InnerSpotAngle: 20.2
   m_CookieSize: 10
@@ -203,10 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 282.67386
+  m_Intensity: 650
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
-  m_InnerSpotPercent: 100
+  m_InnerSpotPercent: 60
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -374,8 +359,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915190066131359945}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.57, y: 0, z: 0.04}
-  m_LocalScale: {x: 0.4341838, y: 0.4341838, z: 0.4341838}
+  m_LocalPosition: {x: -0.57, y: -0.645, z: 0.04}
+  m_LocalScale: {x: 0.5115345, y: 0.5115345, z: 0.5115345}
   m_Children: []
   m_Father: {fileID: 4233129196359809779}
   m_RootOrder: 2
@@ -394,8 +379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTopHat: {fileID: 0}
   teleportationDelay: 0.25
-  maxImpulse: 17.5
-  minImpulse: 13
+  maxImpulse: 14
+  minImpulse: 9
 --- !u!65 &4418090496739762202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -407,8 +392,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 0.65978986, z: 1.39}
+  m_Center: {x: 0.014737142, y: 0.17010327, z: 0}
 --- !u!1 &5053944452108622544
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +486,7 @@ MeshCollider:
   m_GameObject: {fileID: 5053944452108622544}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30

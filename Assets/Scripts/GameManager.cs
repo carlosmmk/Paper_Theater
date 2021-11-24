@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerController;
     public PauseMenu pauseMenu;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -20,6 +15,11 @@ public class GameManager : MonoBehaviour
         {
             if (pauseMenu.animating) return;
             (pauseMenu.gameObject.activeSelf ? (Action)pauseMenu.Unpause : pauseMenu.Pause)();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            playerController.Die(false);
         }
     }
 }

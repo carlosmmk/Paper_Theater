@@ -100,8 +100,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1233006860585965612}
   m_Bounds:
-    m_Center: {x: 0.37750483, y: -0.16674244, z: -0.05924718}
-    m_Extent: {x: 0.5178114, y: 1.1208705, z: 0.002096841}
+    m_Center: {x: 0.33114266, y: -0.09536266, z: -0.0588995}
+    m_Extent: {x: 0.56342876, y: 1.1071777, z: 0.0023945794}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7627829833728714567}
   m_Bounds:
-    m_Center: {x: -0.059793472, y: 1.1091675, z: 0.01000002}
-    m_Extent: {x: 1.0001464, y: 1.3840281, z: 0}
+    m_Center: {x: -0.059792995, y: 1.1091659, z: 0.01000002}
+    m_Extent: {x: 1.0001464, y: 1.3840282, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -343,7 +343,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536948491893540
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024489433002933164}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27
@@ -443,7 +443,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949083791293
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026803305914194470}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27
@@ -543,7 +543,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536948385267961
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322913238222451193}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
@@ -643,7 +643,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949317272434
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -651,7 +651,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514467949471422768}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.22
@@ -743,7 +743,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949449452368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579245597793278516}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27
@@ -845,7 +845,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536948707455076
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -853,7 +853,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054994592587889871}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.57
@@ -949,7 +949,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 48
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949543871461
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2277231155211917815}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3551277521485467183}
   m_Bounds:
-    m_Center: {x: 0.029408216, y: 0.0006734133, z: -0.044999987}
+    m_Center: {x: 0.029408932, y: 0.0006723404, z: -0.044999987}
     m_Extent: {x: 1.1561385, y: 1.4932003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7857031114554924475}
   m_Bounds:
-    m_Center: {x: 0.058229446, y: -0.0027198792, z: -0.05699998}
-    m_Extent: {x: 1.0984488, y: 1.4268565, z: 0}
+    m_Center: {x: 0.058617353, y: -0.0027581453, z: -0.05699998}
+    m_Extent: {x: 1.0984657, y: 1.4269059, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1358,8 +1358,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5980295822341476118}
   m_Bounds:
-    m_Center: {x: 0.077925324, y: -0.09188765, z: 0.9199717}
-    m_Extent: {x: 0.7295265, y: 0.9822286, z: 0.013552636}
+    m_Center: {x: 0.032901883, y: -0.06640899, z: 0.9202999}
+    m_Extent: {x: 0.77105474, y: 0.9572145, z: 0.0132596195}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1463,8 +1463,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6902165401247748384}
   m_Bounds:
-    m_Center: {x: -0.0863173, y: -0.0007840395, z: 0.07325766}
-    m_Extent: {x: 0.5999093, y: 1.4509964, z: 0.00053005666}
+    m_Center: {x: -0.086318254, y: -0.00078487396, z: 0.07325773}
+    m_Extent: {x: 0.5999093, y: 1.4509958, z: 0.0005299896}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1652,8 +1652,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5926740347585153284}
   m_Bounds:
-    m_Center: {x: 0.35632038, y: 0.15655255, z: 0.036073413}
-    m_Extent: {x: 0.7412995, y: 1.0035119, z: 0.012936629}
+    m_Center: {x: 0.35631996, y: 0.15655124, z: 0.036073413}
+    m_Extent: {x: 0.7413001, y: 1.0035118, z: 0.012936629}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1706,7 +1706,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536948957407014
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3504988213651057378}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.26
@@ -2321,7 +2321,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3659536949166058607}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.59
@@ -2428,8 +2428,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1839622450825549772}
   m_Bounds:
-    m_Center: {x: -0.1478067, y: 0.07926214, z: 0.12183201}
-    m_Extent: {x: 0.93716735, y: 0.76552474, z: 0.009182349}
+    m_Center: {x: -0.14878964, y: 0.07792544, z: 0.12193866}
+    m_Extent: {x: 0.93818426, y: 0.76444244, z: 0.009232685}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2620191093954348182}
   m_Bounds:
-    m_Center: {x: -0.09858692, y: 0.0068179965, z: 0.36}
+    m_Center: {x: -0.09858632, y: 0.006816089, z: 0.36}
     m_Extent: {x: 0.59470737, y: 0.3114224, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -2637,7 +2637,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949245369330
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2645,7 +2645,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4658351399149315551}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27
@@ -2738,7 +2738,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536949395057775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2746,7 +2746,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4660448411595713463}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
@@ -2890,8 +2890,8 @@ MonoBehaviour:
   - {fileID: 7809003926948458045}
   - {fileID: 8801163616487055271}
   m_Bounds:
-    m_Center: {x: -0.010447979, y: 0.0010467768, z: 0}
-    m_Extent: {x: 0.95700884, y: 1.8912464, z: 0}
+    m_Center: {x: -0.010445535, y: 0.0010465384, z: 0}
+    m_Extent: {x: 0.95700794, y: 1.8912455, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -2995,8 +2995,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5971395330268242331}
   m_Bounds:
-    m_Center: {x: -0.101430595, y: 0.045251727, z: 0.097702146}
-    m_Extent: {x: 0.39561683, y: 1.006739, z: 0.04633744}
+    m_Center: {x: -0.09643161, y: 0.044781804, z: 0.09779398}
+    m_Extent: {x: 0.389391, y: 1.0069678, z: 0.04600916}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -3100,7 +3100,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5192840023214527789}
   m_Bounds:
-    m_Center: {x: -0.019178152, y: -0.010155678, z: -0.00999999}
+    m_Center: {x: -0.019178033, y: -0.010155082, z: -0.00999999}
     m_Extent: {x: 1.148002, y: 1.4916588, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -3154,7 +3154,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3659536948723253163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3162,7 +3162,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7001226287444698413}
-  m_Material: {fileID: 13400000, guid: 00fed0be5ca704845b3c4917d73d201b, type: 2}
+  m_Material: {fileID: 13400000, guid: bed885d614c0d8341b145aecddbe8a82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.26
@@ -3335,8 +3335,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3043145778622821964}
   m_Bounds:
-    m_Center: {x: -0.21506083, y: 0.2163825, z: 0.045004293}
-    m_Extent: {x: 1.026439, y: 1.4878643, z: 0.002829194}
+    m_Center: {x: -0.21505749, y: 0.21638203, z: 0.045004293}
+    m_Extent: {x: 1.0264386, y: 1.4878643, z: 0.002829196}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -3440,8 +3440,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4506000472088870225}
   m_Bounds:
-    m_Center: {x: 0.13096339, y: 0.02498144, z: 0.046042595}
-    m_Extent: {x: 0.4401164, y: 0.973291, z: 0.033497356}
+    m_Center: {x: 0.13096055, y: 0.024979532, z: 0.04604252}
+    m_Extent: {x: 0.44011363, y: 0.97329026, z: 0.03349734}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

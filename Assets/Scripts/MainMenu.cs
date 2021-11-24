@@ -22,12 +22,7 @@ public class MainMenu : MonoBehaviour
         fadePanel.color = Color.black;
         fadePanel.DOFade(0, fadeDuration).SetUpdate(true);
         Time.timeScale = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        AudioManager.instance.Play("MainMenu&GeneralTheme");
     }
 
     public void Play()
@@ -35,7 +30,7 @@ public class MainMenu : MonoBehaviour
         transform.DOLocalMoveY(endYValue, animDuration).SetEase(easeType, 0, period).OnComplete(()=> gameObject.SetActive(false));
         OpenCurtains();
         Time.timeScale = 1;
-        
+        AudioManager.instance.Stop("MainMenu&GeneralTheme");
     }
 
     public void Quit()

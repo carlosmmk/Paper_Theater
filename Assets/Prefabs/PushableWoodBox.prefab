@@ -72,7 +72,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160375111543875251}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -26.416, y: 15.465367, z: -66.33176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -178,7 +178,7 @@ MonoBehaviour:
     m_Bits: 128
   grounded: 0
   groundedRayDist: 0.6
-  distToGrab: 1.2
+  distToGrab: 1.23
   jointBroken: 0
 --- !u!1001 &7728975476398539657
 PrefabInstance:

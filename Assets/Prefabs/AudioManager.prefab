@@ -1,0 +1,1032 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7474240118730558023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7474240118730558021}
+  - component: {fileID: 7474240118730558020}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7474240118730558021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7474240118730558023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -29.126907, y: 8.504223, z: -24.291752}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7474240118730558020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7474240118730558023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0a9315bbd27b47a7460aa64fe59b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GameplayTheme
+    clip: {fileID: 8300000, guid: 8551adbc6f93faa498850e4dbef27c59, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 7620844055779259303, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MainMenu&GeneralTheme
+    clip: {fileID: 8300000, guid: 9ba2612d0f4c894458a4aae47549b6c9, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: CreditsTheme
+    clip: {fileID: 8300000, guid: e33a6eca6d9c69a4e93022cba0eb4df7, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: VillainTheme
+    clip: {fileID: 8300000, guid: 07f551deea2bee14e9b900866bad240f, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep01
+    clip: {fileID: 8300000, guid: 5d992218cc2cd434cbbd5cf27e91e5f6, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep02
+    clip: {fileID: 8300000, guid: 32ca18ebbbb2a45148b01a122d2d3944, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep03
+    clip: {fileID: 8300000, guid: dd0396094271348508143f397fe7eb73, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep04
+    clip: {fileID: 8300000, guid: 105f43f56ef4342bba06a3bb9699781c, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep05
+    clip: {fileID: 8300000, guid: 82d3b5c22c9ff4be18119722f557cd18, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep06
+    clip: {fileID: 8300000, guid: 880a371c1c1974e48a23ba2af7b93c8c, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep07
+    clip: {fileID: 8300000, guid: c9583933867c242f8a1e98320595abc5, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep08
+    clip: {fileID: 8300000, guid: 7c007167bbd4a0049a86dd462a34b79d, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep09
+    clip: {fileID: 8300000, guid: 06dc86121f4e89e4daf536b85a9616d8, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Footstep10
+    clip: {fileID: 8300000, guid: ddd88feaf89db1d4a83c51ef58449754, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Curtain01
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Curtain02
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Spotlight01
+    clip: {fileID: 8300000, guid: 243da4001027b3144b15e16b32028b77, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Spotlight02
+    clip: {fileID: 8300000, guid: ca051db027463d24f946ce3ad35cc4d6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Spotlight03
+    clip: {fileID: 8300000, guid: 55a4d14df3e31d1438e8a51c9a1282a7, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Spotlight04
+    clip: {fileID: 8300000, guid: d479d97a287c9664794df076c8443418, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Landing01
+    clip: {fileID: 8300000, guid: d711cfedb0fdcad4eab1d1a80848fe98, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Landing02
+    clip: {fileID: 8300000, guid: 3ecdc642f485089439fcb836333d8025, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Landing03
+    clip: {fileID: 8300000, guid: e65f56f091b0a0a40ac7996eadbbddea, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Laugh01
+    clip: {fileID: 8300000, guid: 39f05c8554f79814c845091293b3a25d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Laugh02
+    clip: {fileID: 8300000, guid: 79c3345cfac389541a0b6b8bafc6d9e9, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Laugh03
+    clip: {fileID: 8300000, guid: fac586b5c72a7124982dfac8ac8b608e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Laugh04
+    clip: {fileID: 8300000, guid: c7082a030fbd49f47ad745f28f57e8c9, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Laugh05
+    clip: {fileID: 8300000, guid: 2cd5bb1d1a47540458d7f9b3c741e925, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Cheers01
+    clip: {fileID: 8300000, guid: da26b9035023ece43b47602724e7f9f0, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Cheers02
+    clip: {fileID: 8300000, guid: 9e612efb1c61a49468803a2a57ba5e86, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Cheers03
+    clip: {fileID: 8300000, guid: da3e53bea988e10469f03d3b078ffe23, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Sleeping01
+    clip: {fileID: 8300000, guid: 517b2eb2ad55df447a9c83f2527d9376, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Sleeping02
+    clip: {fileID: 8300000, guid: 323eb005630864b4c9c0b18fcb2054cf, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Sleeping03
+    clip: {fileID: 8300000, guid: 3ee94e822956f4f4fa3d9229405dda67, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Sleeping04
+    clip: {fileID: 8300000, guid: deebedacfad342a4db83ef15ca5c02aa, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Sleeping05
+    clip: {fileID: 8300000, guid: 76089758017046e4fac2bbc39ef66664, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Boo01
+    clip: {fileID: 8300000, guid: 30089a56df90003449f460d322a3632d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Boo02
+    clip: {fileID: 8300000, guid: d70afb9e6e83eef4085297e5ba3735c4, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Boo03
+    clip: {fileID: 8300000, guid: 4cc7822e222adba4c8304a7a1447081a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Boo04
+    clip: {fileID: 8300000, guid: 78f2363b0526480468022374a2eacc05, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Boo05
+    clip: {fileID: 8300000, guid: 9b74d6f49cf475543b7275c0373c7f71, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: PreShow
+    clip: {fileID: 8300000, guid: 63fd088711620064693db593d17fcf1c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MagicHat01
+    clip: {fileID: 8300000, guid: 640588ba541c5b645b2bc1839e4e97fe, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MagicHat02
+    clip: {fileID: 8300000, guid: b77ff05209a914b40b6558f597cce60c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MagicHat03
+    clip: {fileID: 8300000, guid: be96b5738408d6d4a8b7f82b234e30d0, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: ClickChoice01
+    clip: {fileID: 8300000, guid: 125fbbb901de0cf4eba7d459050b3cdd, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: ClickChoice02
+    clip: {fileID: 8300000, guid: f1718b431c00bda49b8f1309f223420c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: ClickChoice03
+    clip: {fileID: 8300000, guid: 495ed2ece807b66458a97a3ad7131c23, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Curtain01
+    clip: {fileID: 8300000, guid: 7aedb460b9616c540852cb31372b80af, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Curtain02
+    clip: {fileID: 8300000, guid: fce9054aeb39369459883b55f6894f86, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Curtain03
+    clip: {fileID: 8300000, guid: aa6b09da0e0af034b8ce01580f94d313, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling01
+    clip: {fileID: 8300000, guid: aa4a39a03d2e53348b8b51e5315028ee, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling02
+    clip: {fileID: 8300000, guid: 496bea1f4a03eae4fa154e349de259c6, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling03
+    clip: {fileID: 8300000, guid: af3563078b6a3084b9ba57009bc779c5, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling04
+    clip: {fileID: 8300000, guid: b6d7ecf1904f5fa4ea9af5adb4f5a00c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling05
+    clip: {fileID: 8300000, guid: aac55ab9595d2064a8f42443c666e979, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling06
+    clip: {fileID: 8300000, guid: a9437369b755cd64681183cb49179a50, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling07
+    clip: {fileID: 8300000, guid: c5a50245e349fd9449f702b24728e4e8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxFalling08
+    clip: {fileID: 8300000, guid: d4cd072a91aedf64896f0e7922ee3198, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxPush01
+    clip: {fileID: 8300000, guid: aa8e50b3c67972746b2b9bcf992f66b0, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoxPush02
+    clip: {fileID: 8300000, guid: dcd2db2adb4ceb046b3a7033154c48c3, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: SpikePiercing01
+    clip: {fileID: 8300000, guid: 0b49f2ba69fe9ad46a2f7428870125ff, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: SpikePiercing02
+    clip: {fileID: 8300000, guid: a95774b3f738c204ba27e0d7b2924bc1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: SpikePiercing03
+    clip: {fileID: 8300000, guid: 2632de32bf1717346be7a667af0f4cd8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MouseHover01
+    clip: {fileID: 8300000, guid: fa748343d2ce55b4fa300839c3a51a7b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MouseHover02
+    clip: {fileID: 8300000, guid: 5fa3a6ffd47611048b5dea7c9867bc84, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MouseHover03
+    clip: {fileID: 8300000, guid: 653a39b565e989e49ae046714f7faeec, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: MouseHover04
+    clip: {fileID: 8300000, guid: ab912031aedb5954db35480277da420f, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank01
+    clip: {fileID: 8300000, guid: ce8b166da251f4f439cef9c5b1cd4ac1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank02
+    clip: {fileID: 8300000, guid: fbe081599a5bcae46a49b03ae2fd6f92, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank03
+    clip: {fileID: 8300000, guid: 9d416eff420794f488a9508289a60d5a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank04
+    clip: {fileID: 8300000, guid: b5edee7cf1261564db19dbd2c6de2bf2, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank05
+    clip: {fileID: 8300000, guid: e932d4c452084134eb841d99257c69d1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank06
+    clip: {fileID: 8300000, guid: fd9778cb3d0076643b12fcf27b41fff1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank07
+    clip: {fileID: 8300000, guid: e4ef62efd6929114da59642ab5cddfdb, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: WoodCrank08
+    clip: {fileID: 8300000, guid: ff156124c26fc314cab81034c9e17d44, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Magic01
+    clip: {fileID: 8300000, guid: 231de9de66494e74c914acace737a09d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Magic02
+    clip: {fileID: 8300000, guid: 201029ac0336d3b4a9f60332067d55fc, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Magic03
+    clip: {fileID: 8300000, guid: 73f8cfa0293b6e84fa3bb89c42f83578, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Magic04
+    clip: {fileID: 8300000, guid: 19d1de033df4d414a8c657ab0ff5ff77, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering01
+    clip: {fileID: 8300000, guid: d4b65f23ee065764f9c95c5b5296ba0b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering02
+    clip: {fileID: 8300000, guid: b6b2f9163c5cc6a4486dc09e078bfa71, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering03
+    clip: {fileID: 8300000, guid: e5ba7861eab6e034e854641d4c157ce2, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering04
+    clip: {fileID: 8300000, guid: b59cfc3d11dc5c64ab498aef09c285bd, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering05
+    clip: {fileID: 8300000, guid: 1845ede260f366245b98d11136db8ab3, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering06
+    clip: {fileID: 8300000, guid: 4ecc6a0e48f3a6647ba9c61c59b62e08, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: BoardLowering06
+    clip: {fileID: 8300000, guid: 4ecc6a0e48f3a6647ba9c61c59b62e08, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor01
+    clip: {fileID: 8300000, guid: 720589a19d4fe7b4c911499087c72d01, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor02
+    clip: {fileID: 8300000, guid: f1782289939c7474e9a4f1121178573a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor03
+    clip: {fileID: 8300000, guid: cd84dc7289ccbb541b21345448869877, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor04
+    clip: {fileID: 8300000, guid: 283cd3f5d1b5e8047bf86fb808366c30, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor05
+    clip: {fileID: 8300000, guid: c22e77a3e444ae742b7a1dea4d79c127, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor06
+    clip: {fileID: 8300000, guid: 6f73f22d1b4a57c41bc4d45d43ac0695, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor07
+    clip: {fileID: 8300000, guid: cb752f5a11031a440b64d8e837ffa49c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor08
+    clip: {fileID: 8300000, guid: ea1cbae974efdfc4a914386111bf9d96, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: IronDoor09
+    clip: {fileID: 8300000, guid: b7099e4d157d09e48a733b41f7c697f2, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Jump01
+    clip: {fileID: 8300000, guid: ae3ae2982b5033847bc34541f3dc9a8f, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Jump02
+    clip: {fileID: 8300000, guid: 84a79bd56d96e6f4bbee593922cd5a16, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Jump03
+    clip: {fileID: 8300000, guid: 0c2feffb47d59e6418b09262789a62b5, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Jump04
+    clip: {fileID: 8300000, guid: e81ba09d595557a4bbbe611dd8ee303a, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: ElectricSaw01
+    clip: {fileID: 8300000, guid: 7ad34822009cd2a449321e818b8c123e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Cage
+    clip: {fileID: 8300000, guid: 0e65cd0cf17c93d43b1223a59ff32724, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall01
+    clip: {fileID: 8300000, guid: 7d39d7293480b8b46a28a4f6c47c4b89, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall02
+    clip: {fileID: 8300000, guid: b78244590c0c4c34996f72a41498849b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall03
+    clip: {fileID: 8300000, guid: 32923b05684b9b64d8cc56456561e6af, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall04
+    clip: {fileID: 8300000, guid: d7b957bb08eb89c4495a6373b6c32b4b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall05
+    clip: {fileID: 8300000, guid: 3c612f3cfd5d2214dab1676d38a0f735, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall06
+    clip: {fileID: 8300000, guid: bb498905f2da5164ca11209c7ae49e84, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  - name: Fall07
+    clip: {fileID: 8300000, guid: 98d14bccb3e5d9e44a12dfd61989894c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 7644709070628296899, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+    playOnAwake: 0
+    ignoreListenerPause: 0
+    source: {fileID: 0}
+  source: {fileID: 0}
+  masterMixer: {fileID: 24300002, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+  musicMixer: {fileID: 24100000, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+  sfxMixer: {fileID: 24100000, guid: 1b3432e73aa192c4482750b428201ea4, type: 2}
+  musicPlaying: 

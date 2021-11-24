@@ -5,22 +5,14 @@ using UnityEngine;
 
 public class SawPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private bool _setInvisibleMask;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+
+        var invisibleMask = other.GetComponent<PlayerController>().depthMask;
         
-        other.GetComponent<PlayerController>().depthMask.SetActive(true);
+        invisibleMask.SetActive(_setInvisibleMask);
     }
 }
